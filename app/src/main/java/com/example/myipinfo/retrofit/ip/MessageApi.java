@@ -1,4 +1,4 @@
-package com.example.myipinfo.retrofit;
+package com.example.myipinfo.retrofit.ip;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

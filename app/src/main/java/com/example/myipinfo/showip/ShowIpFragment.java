@@ -1,7 +1,6 @@
 package com.example.myipinfo.showip;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +14,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myipinfo.R;
 import com.example.myipinfo.databinding.FragmentShowIpBinding;
-import com.example.myipinfo.retrofit.MessageApi;
-import com.example.myipinfo.retrofit.MessageIp;
+import com.example.myipinfo.retrofit.Controller;
+import com.example.myipinfo.retrofit.ip.MessageIp;
 import com.example.myipinfo.showdetails.ShowDetailsFragment;
 import com.example.myipinfo.showip.viewmodel.ShowIpViewModel;
 import com.example.myipinfo.showip.viewmodel.ShowIpViewModelImpl;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Alexandr Mikhalev on 11.05.2019.
@@ -69,26 +64,15 @@ public class ShowIpFragment extends Fragment {
     }
 
     private void getMyIp() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.ipify.org/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        MessageApi messagesApi = retrofit.create(MessageApi.class);
-
-        retrofit2.Call<MessageIp> messages = messagesApi.messages();
+        retrofit2.Call<MessageIp> messages = Controller.getMessageIp().messages();
 
         messages.enqueue(new Callback<MessageIp>() {
             @Override
             public void onResponse(Call<MessageIp> call, Response<MessageIp> response) {
-                //Log.d(TAG, "onResponse: " + response.message());
                 if (response.isSuccessful()) {
                     mShowIpViewModel.onResponseCallback(response.body().getCode());
                 } else {
-
+                    Toast.makeText(getContext(), "Not successful", Toast.LENGTH_LONG).show();
                 }
             }
 

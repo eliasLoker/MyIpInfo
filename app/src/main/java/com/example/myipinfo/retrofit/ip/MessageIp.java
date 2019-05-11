@@ -1,4 +1,4 @@
-package com.example.myipinfo.retrofit;
+package com.example.myipinfo.retrofit.ip;
 
 import com.google.gson.annotations.SerializedName;
 
