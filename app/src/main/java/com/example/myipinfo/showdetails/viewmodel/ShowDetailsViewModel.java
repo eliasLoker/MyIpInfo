@@ -22,10 +22,16 @@ public interface ShowDetailsViewModel {
 
     void setCountryName(String name);
 
+    ObservableField<String> getPostCode();
+
+    void setPostCode(String postCode);
+
     //states
     ObservableField<Boolean> getLocationVisible();
 
     ObservableField<Boolean> getCountryNameVisible();
+
+    ObservableField<Boolean> getPostCodeState();
 
     SingleLiveEvent<ShowDetailsEvent> getShowDetailsEvent();
 

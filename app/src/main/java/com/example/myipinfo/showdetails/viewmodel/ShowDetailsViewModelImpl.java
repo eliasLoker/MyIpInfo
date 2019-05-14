@@ -17,9 +17,11 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     private ObservableField<String> mIpObservableField;
     private ObservableField<String> mLocation;
     private ObservableField<String> mCountryName;
+    private ObservableField<String> mPostCode;
 
     private ObservableField<Boolean> mLocationVisible;
     private ObservableField<Boolean> mCountryNameVisible;
+    private ObservableField<Boolean> mPostCodeVisible;
 
     private SingleLiveEvent<ShowDetailsEvent> mShowDetailsEvent;
 
@@ -28,9 +30,11 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
         mIpObservableField = new ObservableField<>(mIp);
         mLocation = new ObservableField<>();
         mCountryName = new ObservableField<>();
+        mPostCode = new ObservableField<>();
 
         mLocationVisible = new ObservableField<>(false);
         mCountryNameVisible = new ObservableField<>(false);
+        mPostCodeVisible = new ObservableField<>(false);
         mShowDetailsEvent = new SingleLiveEvent<>();
     }
 
@@ -60,6 +64,16 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     }
 
     @Override
+    public ObservableField<String> getPostCode() {
+        return mPostCode;
+    }
+
+    @Override
+    public void setPostCode(String postCode) {
+        mPostCode.set(postCode);
+    }
+
+    @Override
     public ObservableField<Boolean> getLocationVisible() {
         return mLocationVisible;
     }
@@ -67,6 +81,11 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     @Override
     public ObservableField<Boolean> getCountryNameVisible() {
         return mCountryNameVisible;
+    }
+
+    @Override
+    public ObservableField<Boolean> getPostCodeState() {
+        return mPostCodeVisible;
     }
 
     @Override
@@ -78,6 +97,7 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     public void onResponseCallback() {
         mLocationVisible.set(true);
         mCountryNameVisible.set(true);
+        mPostCodeVisible.set(true);
     }
 
     @Override

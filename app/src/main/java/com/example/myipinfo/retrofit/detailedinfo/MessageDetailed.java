@@ -24,6 +24,9 @@ public class MessageDetailed {
     @SerializedName("country_name")
     private String countryName;
 
+    @SerializedName("postal")
+    private String postCode;
+
     public String getCity() {
         return city;
     }
@@ -62,5 +65,13 @@ public class MessageDetailed {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 }
