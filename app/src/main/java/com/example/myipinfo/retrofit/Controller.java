@@ -18,28 +18,22 @@ public class Controller {
     private static final String BASE_MESSAGE_DETAILED_URL = "https://ipapi.co/";
 
     public static MessageApi getMessageIp() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_IP_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
+        Retrofit retrofit = getRetrofit(BASE_IP_URL);
         return retrofit.create(MessageApi.class);
     }
 
     public static MessageDetailedApi getMessageDetailed() {
+        Retrofit retrofit = getRetrofit(BASE_MESSAGE_DETAILED_URL);
+        return retrofit.create(MessageDetailedApi.class);
+    }
+
+    private static Retrofit getRetrofit(String URL) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_MESSAGE_DETAILED_URL)
+        return new Retrofit.Builder()
+                .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
-        return retrofit.create(MessageDetailedApi.class);
     }
 }
