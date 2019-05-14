@@ -117,5 +117,26 @@
             app:layout_constraintStart_toStartOf="@id/country_text_view"
             app:layout_constraintTop_toTopOf="@id/postcode_image_view" />
 
+        <ImageView
+            android:id="@+id/provider_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:visibility="@{viewModel.orgInfoState ? View.VISIBLE : View.INVISIBLE}"
+            android:src="@drawable/ic_provider"
+            app:layout_constraintStart_toStartOf="@id/postcode_image_view"
+            app:layout_constraintTop_toBottomOf="@id/postcode_image_view"/>
+
+        <TextView
+            android:id="@+id/provider_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.orgInfo}"
+            android:textSize="30sp"
+            android:visibility="@{viewModel.orgInfoState ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/postcode_text_view"
+            app:layout_constraintTop_toTopOf="@id/provider_image_view"
+            app:layout_constraintBottom_toBottomOf="@id/provider_image_view"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

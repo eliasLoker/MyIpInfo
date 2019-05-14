@@ -69,6 +69,7 @@ public class ShowDetailsFragment extends Fragment {
                     mShowDetailsViewModel.setLocationInfo(messageDetailed.getLatitude(), messageDetailed.getLongitude());
                     mShowDetailsViewModel.setCountryName(messageDetailed.getCountryName());
                     mShowDetailsViewModel.setPostCode(messageDetailed.getPostCode());
+                    mShowDetailsViewModel.setOrgInfo(messageDetailed.getOrgInfo());
 
                     mShowDetailsViewModel.onResponseCallback();
                     Log.d(TAG, "onResponse: " + response.body().getCity() + " " + response.body().getCountry());

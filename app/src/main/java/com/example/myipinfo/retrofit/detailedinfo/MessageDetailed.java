@@ -27,6 +27,9 @@ public class MessageDetailed {
     @SerializedName("postal")
     private String postCode;
 
+    @SerializedName("org")
+    private String orgInfo;
+
     public String getCity() {
         return city;
     }
@@ -73,5 +76,13 @@ public class MessageDetailed {
 
     public void setPostCode(String postCode) {
         this.postCode = postCode;
+    }
+
+    public String getOrgInfo() {
+        return orgInfo;
+    }
+
+    public void setOrgInfo(String orgInfo) {
+        this.orgInfo = orgInfo;
     }
 }

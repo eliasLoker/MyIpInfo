@@ -18,10 +18,12 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     private ObservableField<String> mLocation;
     private ObservableField<String> mCountryName;
     private ObservableField<String> mPostCode;
+    private ObservableField<String> mOrgInfo;
 
     private ObservableField<Boolean> mLocationVisible;
     private ObservableField<Boolean> mCountryNameVisible;
     private ObservableField<Boolean> mPostCodeVisible;
+    private ObservableField<Boolean> mOrgInfoVisible;
 
     private SingleLiveEvent<ShowDetailsEvent> mShowDetailsEvent;
 
@@ -31,10 +33,12 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
         mLocation = new ObservableField<>();
         mCountryName = new ObservableField<>();
         mPostCode = new ObservableField<>();
+        mOrgInfo = new ObservableField<>();
 
         mLocationVisible = new ObservableField<>(false);
         mCountryNameVisible = new ObservableField<>(false);
         mPostCodeVisible = new ObservableField<>(false);
+        mOrgInfoVisible = new ObservableField<>(false);
         mShowDetailsEvent = new SingleLiveEvent<>();
     }
 
@@ -74,6 +78,16 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     }
 
     @Override
+    public ObservableField<String> getOrgInfo() {
+        return mOrgInfo;
+    }
+
+    @Override
+    public void setOrgInfo(String info) {
+        mOrgInfo.set(info);
+    }
+
+    @Override
     public ObservableField<Boolean> getLocationVisible() {
         return mLocationVisible;
     }
@@ -89,6 +103,11 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     }
 
     @Override
+    public ObservableField<Boolean> getOrgInfoState() {
+        return mOrgInfoVisible;
+    }
+
+    @Override
     public SingleLiveEvent<ShowDetailsEvent> getShowDetailsEvent() {
         return mShowDetailsEvent;
     }
@@ -98,6 +117,7 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
         mLocationVisible.set(true);
         mCountryNameVisible.set(true);
         mPostCodeVisible.set(true);
+        mOrgInfoVisible.set(true);
     }
 
     @Override
