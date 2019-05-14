@@ -65,6 +65,11 @@ public class ShowDetailsFragment extends Fragment {
             @Override
             public void onResponse(Call<MessageDetailed> call, Response<MessageDetailed> response) {
                 if (response.isSuccessful()) {
+                    MessageDetailed messageDetailed = response.body();
+                    mShowDetailsViewModel.setLocationInfo(messageDetailed.getLatitude(), messageDetailed.getLongitude());
+                    mShowDetailsViewModel.setCountryName(messageDetailed.getCountryName());
+
+                    mShowDetailsViewModel.onResponseCallback();
                     Log.d(TAG, "onResponse: " + response.body().getCity() + " " + response.body().getCountry());
                 } else {
                     Toast.makeText(getContext(), "Not successful", Toast.LENGTH_LONG).show();

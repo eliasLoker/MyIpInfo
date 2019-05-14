@@ -8,20 +8,21 @@
         <variable
             name="viewModel"
             type="com.example.myipinfo.showdetails.viewmodel.ShowDetailsViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <ImageView
             android:id="@+id/ip_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:text="@string/for_your_ip_text_view"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_ip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,12 +30,36 @@
             android:id="@+id/ip_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:text="@{viewModel.ip}"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ip_header"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/ip_header"
+            app:layout_constraintStart_toEndOf="@id/ip_header"
+            app:layout_constraintTop_toTopOf="@id/ip_header"
             tools:text="192.111.222.88" />
+
+
+        <ImageView
+            android:id="@+id/location_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_location"
+            android:visibility="@{viewModel.locationVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/ip_header"
+            app:layout_constraintTop_toBottomOf="@id/ip_header" />
+
+        <TextView
+            android:id="@+id/location_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.locationInfo}"
+            android:textSize="30sp"
+            android:visibility="@{viewModel.locationVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/location_image_view"
+            app:layout_constraintStart_toStartOf="@id/ip_text_view"
+            app:layout_constraintTop_toTopOf="@id/location_image_view"
+            tools:text="12121212121" />
 
         <Button
             android:id="@+id/show_info_btn"
@@ -48,6 +73,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/country_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_flag"
+            android:visibility="@{viewModel.countryNameVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintStart_toStartOf="@id/location_image_view"
+            app:layout_constraintTop_toBottomOf="@id/location_image_view" />
+
+        <TextView
+            android:id="@+id/country_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.countryName}"
+            android:textSize="30sp"
+            android:visibility="@{viewModel.countryNameVisible ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/country_image_view"
+            app:layout_constraintStart_toStartOf="@id/location_text_view"
+            app:layout_constraintTop_toTopOf="@id/country_image_view"
+            tools:text="RU" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,6 +15,15 @@ public class MessageDetailed {
     @SerializedName("country")
     private String country;
 
+    @SerializedName("longitude")
+    private String longitude;
+
+    @SerializedName("latitude")
+    private String latitude;
+
+    @SerializedName("country_name")
+    private String countryName;
+
     public String getCity() {
         return city;
     }
@@ -29,5 +38,29 @@ public class MessageDetailed {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 }

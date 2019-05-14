@@ -15,13 +15,22 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
 
     private String mIp;
     private ObservableField<String> mIpObservableField;
+    private ObservableField<String> mLocation;
+    private ObservableField<String> mCountryName;
+
+    private ObservableField<Boolean> mLocationVisible;
+    private ObservableField<Boolean> mCountryNameVisible;
 
     private SingleLiveEvent<ShowDetailsEvent> mShowDetailsEvent;
 
     public ShowDetailsViewModelImpl(String ip) {
         mIp = ip;
         mIpObservableField = new ObservableField<>(mIp);
+        mLocation = new ObservableField<>();
+        mCountryName = new ObservableField<>();
 
+        mLocationVisible = new ObservableField<>(false);
+        mCountryNameVisible = new ObservableField<>(false);
         mShowDetailsEvent = new SingleLiveEvent<>();
     }
 
@@ -31,8 +40,44 @@ public class ShowDetailsViewModelImpl extends ViewModel implements ShowDetailsVi
     }
 
     @Override
+    public ObservableField<String> getLocationInfo() {
+        return mLocation;
+    }
+
+    @Override
+    public void setLocationInfo(String latitude, String longitude) {
+        mLocation.set(latitude + ", " + longitude);
+    }
+
+    @Override
+    public ObservableField<String> getCountryName() {
+        return mCountryName;
+    }
+
+    @Override
+    public void setCountryName(String name) {
+        mCountryName.set(name);
+    }
+
+    @Override
+    public ObservableField<Boolean> getLocationVisible() {
+        return mLocationVisible;
+    }
+
+    @Override
+    public ObservableField<Boolean> getCountryNameVisible() {
+        return mCountryNameVisible;
+    }
+
+    @Override
     public SingleLiveEvent<ShowDetailsEvent> getShowDetailsEvent() {
         return mShowDetailsEvent;
+    }
+
+    @Override
+    public void onResponseCallback() {
+        mLocationVisible.set(true);
+        mCountryNameVisible.set(true);
     }
 
     @Override
