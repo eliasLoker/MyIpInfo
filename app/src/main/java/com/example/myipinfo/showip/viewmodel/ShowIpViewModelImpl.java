@@ -17,6 +17,8 @@ public class ShowIpViewModelImpl extends ViewModel implements ShowIpViewModel {
     public static final String TAG = "ShowIpViewModelImpl";
 
     private ObservableField<Boolean> mDetailsState;
+    private ObservableField<Boolean> mProgressBarState;
+
     private ObservableField<String> mIp;
 
     private SingleLiveEvent<ShowIpEvent> mShowIpEvent;
@@ -24,6 +26,7 @@ public class ShowIpViewModelImpl extends ViewModel implements ShowIpViewModel {
 
     public ShowIpViewModelImpl() {
         mDetailsState = new ObservableField<>(false);
+        mProgressBarState = new ObservableField<>(false);
         mIp = new ObservableField<>();
 
         mShowIpEvent = new SingleLiveEvent<>();
@@ -41,6 +44,11 @@ public class ShowIpViewModelImpl extends ViewModel implements ShowIpViewModel {
     }
 
     @Override
+    public ObservableField<Boolean> getProgressBarState() {
+        return mProgressBarState;
+    }
+
+    @Override
     public SingleLiveEvent<ShowIpEvent> getShowIpEvent() {
         return mShowIpEvent;
     }
@@ -52,6 +60,7 @@ public class ShowIpViewModelImpl extends ViewModel implements ShowIpViewModel {
 
     @Override
     public void onClickShowIpButton() {
+        mProgressBarState.set(true);
         mShowIpEvent.postValue(new ShowIpEvent());
     }
 
@@ -62,6 +71,7 @@ public class ShowIpViewModelImpl extends ViewModel implements ShowIpViewModel {
 
     @Override
     public void onResponseCallback(String ip) {
+        mProgressBarState.set(false);
         mDetailsState.set(true);
         mIp.set(ip);
     }

@@ -17,6 +17,8 @@ public interface ShowIpViewModel {
 
     ObservableField<String> getIp();
 
+    ObservableField<Boolean> getProgressBarState();
+
     SingleLiveEvent<ShowIpEvent> getShowIpEvent();
 
     SingleLiveEvent<FragmentEvent> getFragmentEvent();
